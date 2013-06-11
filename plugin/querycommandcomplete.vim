@@ -124,7 +124,12 @@ function! s:GenerateCompletions(findstart, base)
     endif
 
     let results = []
-    let cmd = g:qcc_query_command
+    if exists("b:qcc_query_command")
+        let cmd = b:qcc_query_command
+    else
+        let cmd = g:qcc_query_command
+    endif
+
     if cmd !~ '%s'
         let cmd .= ' %s'
     endif
